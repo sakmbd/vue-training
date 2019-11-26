@@ -1,18 +1,26 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    {{ reversName }}
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
+  data () {
+    return {
+      name: 'shakeel'
+    }
+  },
+  computed: {
+    reversName () {
+      return this.name.split('').reverse().join('')
+    }
+  },
+  created () {
+    console.log('[Created Hook triggered]')
+  },
+  mounted () {
+    console.log('[Mounted Hook triggered]')
   }
 }
 </script>
