@@ -1,26 +1,28 @@
 <template>
   <div class="home">
-    {{ reversName }}
+    <h1>Wlecome to home page!</h1>
+    <ol>
+      <li v-for="post in posts" :key="post.id">
+        {{ post.title }}
+      </li>
+    </ol>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
-      name: 'shakeel'
-    }
-  },
-  computed: {
-    reversName () {
-      return this.name.split('').reverse().join('')
+      posts: {}
     }
   },
   created () {
-    console.log('[Created Hook triggered]')
-  },
-  mounted () {
-    console.log('[Mounted Hook triggered]')
+    axios.get(process.env.VUE_APP_APIURL + '/posts').then(response => {
+      this.posts = response.data
+    }).catch(error => {
+      console.log(error)
+    })
   }
 }
 </script>
