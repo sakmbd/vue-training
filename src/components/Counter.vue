@@ -1,27 +1,15 @@
 <template>
     <div>
-        <button @click="increment">Increment</button>
-        <br>
-        Counter: {{ counter }}
+      <h2>Child components data</h2>
+      <p>Counter Value: {{ getCounter }}</p>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  props: ['value'],
-  data () {
-    return {
-      counter: this.value
-    }
-  },
-  created () {
-    this.$emit('updatedCounterValue', this.counter)
-  },
-  methods: {
-    increment () {
-      this.counter = this.counter + 1
-      this.$emit('updatedCounterValue', this.counter)
-    }
+  computed: {
+    ...mapGetters(['getCounter'])
   }
 }
 </script>
